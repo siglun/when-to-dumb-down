@@ -50,7 +50,7 @@ If we grossly simplify the process, a user might be up to one of two things: (1)
 .LP
 You may look for a particular book \fIEnten - Eller (Either/Or)\fP byKierkegaard(1843) or you might be interested in the role of this philosopher in your study of the origin of existentialism. In the former case you actually look for Kierkegaard in the author field, in the latter case you look for him in subject field.
 .KF
-.PDFPIC .pdf 12.0c 7.2c
+.PDFPIC sks-ee1-ill_k1.pdf 12.0c 7.2c
 .sp
 .QP
 \s-2Enten - eller cover page\s+2
