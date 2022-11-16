@@ -14,8 +14,8 @@ rm shit.html
 
 ./to-markdown.sh
 
-xsltproc teip5toms.xsl  sonnet-analysis.xml | grep -v '^$' >  sonnet-analysis.ms
-groff -U  -m pdfpic -m pdfmark -ms -k  -s -t -P-pa4 -Tpdf parameters.ms  sonnet-analysis.ms >  sonnet-analysis.pdf
+xsltproc teip5toms.xsl  experience.xml | grep -v '^$' >  experience.ms
+groff -U  -m pdfpic -m pdfmark -ms -k  -s -t -P-pa4 -Tpdf parameters.ms  experience.ms >  experience.pdf
 
 
 
