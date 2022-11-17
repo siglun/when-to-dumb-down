@@ -15,7 +15,6 @@
             <placeName>Copenhagen</placeName>
             <placeName>Denmark</placeName>
           </affiliation>
-       
         </author>
       </titleStmt>
       <publicationStmt>
@@ -357,8 +356,8 @@ AND
 
         ]]></eg>
 
-        <p>The constructs <![CDATA[{!parent ... }]]> and
-        <![CDATA[{!edismax ... }]]> are so called local parameters in a
+        <p>The constructs  <hi rend='monospaced'>{!parent ... }</hi> and
+        <hi rend='monospaced'>{!edismax ... }</hi> are so called local parameters in a
         Solr request. The former specifies that we want Solr to return
         parent documents such the described:true, the latter tells Solr we
         want the author to be Søren and title to be Enten  &#8212; eller. Now we
@@ -385,16 +384,16 @@ AND
         developers gray hair and age prematurely. Also, it is legitimate
         use case to be able to identify the etchers and the dancers.</p>
 
-        <p>However:</p>
+        <p>However</p>
 
         <list type='ordered'>
-          <item>We do, however, know that users at of our resources are not very
+          <item>We do know that users at of our resources are not very
           good at using fields. An interface allowing you to search
           portraiture subjects is very specialized use case. So is the use
           case to be able to search for senders and recipients of letters.</item>
 
-          <item> People do search for word in a title, but they do not search
-          for <title>A life fragment</title> separate from
+          <item>People do search for word in a title, but they do not search
+          for a sub-title <title>A life fragment</title> separate from the main title
           <title>Either/or</title>. Likewise they not particularly interested
           in making a difference between <title>Enten &#8212; eller</title>
           and <title>Either/or</title>. If they search for the latter they
@@ -411,10 +410,8 @@ AND
 
         <p>
           To make a useful service we have to aggregate data into reasonable
-          headlines. _[Dublin Core Metadata
-          Initiative](https://www.dublincore.org/)_ has actually a name for
-          this: The [Dumb-Down
-          Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/)
+          headlines. Dublin Core Metadata Initiative (<ref target="#dcmi">DCMI</ref>)
+          has actually a name for this: <ref target="#dumb-down">The Dumb-Down Principle</ref>.
         </p>
 
       </div>
@@ -425,12 +422,11 @@ AND
         either (i) when indexing or (ii) when searching.</p>
 
         <p>In either case, for a ballet performance we would dumb-down
-        _Composer_ ((<hi rend='monospaced'>cmp</hi>), Conductor ((<hi
-        rend='monospaced'>cnd</hi>), Director ((<hi
-        rend='monospaced'>drt</hi>) and Choreographer ((<hi
+        <term>Composer</term> (<hi rend='monospaced'>cmp</hi>), <term>Conductor</term> (<hi
+        rend='monospaced'>cnd</hi>), Director (<hi
+        rend='monospaced'>drt</hi>) and Choreographer (<hi
         rend='monospaced'>chr</hi>) to one single repeatable field
-        [creator](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/). It
-        would contain Igor Stravinsky (the transcribed, but perhaps
+        <ref target="#creator">creator</ref>. It would contain Igor Stravinsky (the transcribed, but perhaps
         also his name in Cyrillic), and obviously all other
         creatives. Most of the dancers would most likely go to the <ref target="#contributor">contributor</ref>
         field.</p>
@@ -565,6 +561,22 @@ AND
           <bibl xml:id="contributor">
             <title level="m">Contributor</title>
             <ref target="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/contributor/"/>
+          </bibl>
+
+          <bibl xml:id="creator">
+            <title level="m">creator</title>
+            <ref target="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/"/>
+          </bibl>
+
+          <bibl xml:id="dcmi">
+            <title level="m">Dublin Core Metadata Initiative</title>
+            <ref target="https://www.dublincore.org/"/>
+          </bibl>
+
+          <bibl xml:id="dumb-down">
+            <title level="a">Dumb-Down Principle</title>
+            <title level="m">DublinCore Glossary</title>
+            <ref target="https://www.dublincore.org/resources/glossary/dumb-down_principle/"/>
           </bibl>
           
           <bibl xml:id="mods">

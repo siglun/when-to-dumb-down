@@ -64,7 +64,10 @@ The user gets a far too long list of results which contains author, title and pe
 .LP
 If we grossly simplify the process, a user might be up to one of two things: (1) Finding or resolving a given reference, i.e., the right object, perhaps the right edition. Or (2) Finding information on a given topic. See these two as endpoints on a scale.
 .LP
-You may look for a particular book \fIEnten — Eller (Either/Or)\fP by
+You may look for a particular book
+\fIEnten —  Eller
+        (Either/Or)\fP
+by
 \fIKierkegaard\fP
 (1843) or you might be interested in the role of this philosopher in your study of the origin of existentialism. In the former case you actually look for Kierkegaard in the author field, in the latter case you look for him in subject field.
 .KF
@@ -74,7 +77,9 @@ You may look for a particular book \fIEnten — Eller (Either/Or)\fP by
 .SH
 Encoding, indexing and using
 .LP
-Assume we are about to add metadata on \fIEnten — eller\fP by
+Assume we are about to add metadata on
+\fIEnten —  eller\fP
+by
 \fISøren Kierkegaard\fP
 into a Solr index. What we get for that book might contain the data below. The example is encoded in a format called Metadata Object Description Schema (
 .pdfhref L -D mods MODS
@@ -256,7 +261,11 @@ AND
         \fP
 .DE
 .LP
-The constructs {!parent ... } and {!edismax ... } are so called local parameters in a Solr request. The former specifies that we want Solr to return parent documents such the described:true, the latter tells Solr we want the author to be Søren and title to be Enten — eller. Now we can reasonably easy search and retrieve information on the
+The constructs
+\f(CR{!parent ... }\fP
+and
+\f(CR{!edismax ... }\fP
+are so called local parameters in a Solr request. The former specifies that we want Solr to return parent documents such the described:true, the latter tells Solr we want the author to be Søren and title to be Enten — eller. Now we can reasonably easy search and retrieve information on the
 \fIEtcher\fP
 (
 \f(CRetr\fP
@@ -278,33 +287,53 @@ The user problems
 .LP
 I hope I've been able to convince you that the fairly complicated metadata structures used in libraries are useful for patrons and staff. They were not invented for giving software developers gray hair and age prematurely. Also, it is legitimate use case to be able to identify the etchers and the dancers.
 .LP
-However:
+However
 .IP 1
-We do, however, know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
+We do know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
 .IP 2
-People do search for word in a title, but they do not search forA life fragmentseparate fromEither/or. Likewise they not particularly interested in making a difference betweenEnten — ellerandEither/or. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
+People do search for word in a title, but they do not search for a sub-title
+\fIA life fragment\fP
+separate from the main title
+\fIEither/or\fP
+. Likewise they not particularly interested in making a difference between
+\fIEnten — eller\fP
+and
+\fIEither/or\fP
+. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
 .IP 3
-You know, each performance ofВесна священная(AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to
+You know, each performance of
+\fIВесна священная\fP
+(AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to
 \fIСтравинский, Игорь Фёдорович\fP
 (AKA
 \fIStravinsky, Igor Fyodorovich\fP
 the composer). I could go on here. You could add from your own experience.
 .LP
-To make a useful service we have to aggregate data into reasonable headlines. _[Dublin Core Metadata Initiative](https://www.dublincore.org/)_ has actually a name for this: The [Dumb-Down Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/)
+To make a useful service we have to aggregate data into reasonable headlines. Dublin Core Metadata Initiative (
+.pdfhref L -D dcmi DCMI
+\&) has actually a name for this:
+.pdfhref L -D dumb-down The Dumb-Down Principle
+\&.
 .SH
 The developer problems
 .LP
 From the developers point of view, metadata dumb-down can take place, either (i) when indexing or (ii) when searching.
 .LP
-In either case, for a ballet performance we would dumb-down _Composer_ ((
+In either case, for a ballet performance we would dumb-down
+\fIComposer\fP
+(
 \f(CRcmp\fP
-), Conductor ((
+),
+\fIConductor\fP
+(
 \f(CRcnd\fP
-), Director ((
+), Director (
 \f(CRdrt\fP
-) and Choreographer ((
+) and Choreographer (
 \f(CRchr\fP
-) to one single repeatable field [creator](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/). It would contain Igor Stravinsky (the transcribed, but perhaps also his name in Cyrillic), and obviously all other creatives. Most of the dancers would most likely go to the
+) to one single repeatable field
+.pdfhref L -D creator creator
+\&. It would contain Igor Stravinsky (the transcribed, but perhaps also his name in Cyrillic), and obviously all other creatives. Most of the dancers would most likely go to the
 .pdfhref L -D contributor contributor
 \&field.
 .LP
@@ -314,7 +343,11 @@ and
 \f(CRcontributor\fP
 in the index, to do it when searching would imply to do it using the horrendous search syntax presented above. Then you have to do the same for title and other relevant fields.
 .LP
-In the case of \fIEither/or\fP , \fIEnten — eller\fP the dumb-down solr record would look somewhat as the record below:
+In the case of
+\fIEither/or\fP
+,
+\fIEnten  — eller\fP
+the dumb-down solr record would look somewhat as the record below:
 .DS L
 \f(CR\s-2
         [
@@ -427,6 +460,21 @@ Database normalization.
 .pdfhref W -D https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/ https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/
 \fP\s+2
 .XP
+.pdfhref M -N dcmi
+\fIDublin Core Metadata Initiative\fP 
+.br  
+\s-2\f(CR
+.pdfhref W -D https://www.dublincore.org/ https://www.dublincore.org/
+\fP\s+2
+.XP
+.pdfhref M -N dumb-down
+Dumb-Down Principle.  In:
+\fIDublinCore Glossary\fP 
+.br  
+\s-2\f(CR
+.pdfhref W -D https://www.dublincore.org/resources/glossary/dumb-down_principle/ https://www.dublincore.org/resources/glossary/dumb-down_principle/
+\fP\s+2
+.XP
 .pdfhref M -N nested-documents
 Indexing Nested Child Documents.  In:
 \fIApache Solr Reference Guide\fP 
@@ -462,6 +510,13 @@ The Standard Query Parser.  In:
 .br  
 \s-2\f(CR
 .pdfhref W -D https://solr.apache.org/guide/6_6/the-standard-query-parser.html https://solr.apache.org/guide/6_6/the-standard-query-parser.html
+\fP\s+2
+.XP
+.pdfhref M -N creator
+\fIcreator\fP 
+.br  
+\s-2\f(CR
+.pdfhref W -D https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/ https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/
 \fP\s+2
 .XP
 .pdfhref M -N schema.org

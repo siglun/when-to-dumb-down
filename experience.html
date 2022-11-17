@@ -508,8 +508,8 @@ AND
          {!edismax v="title:(Enten - eller) AND entity_type:tit"}
 
         </pre>
-      <p>The constructs {!parent ... } and
-        {!edismax ... } are so called local parameters in a
+      <p>The constructs  <kbd>{!parent ... }</kbd> and
+        <kbd>{!edismax ... }</kbd> are so called local parameters in a
         Solr request. The former specifies that we want Solr to return
         parent documents such the described:true, the latter tells Solr we
         want the author to be Søren and title to be Enten  — eller. Now we
@@ -530,14 +530,14 @@ AND
         patrons and staff. They were not invented for giving software
         developers gray hair and age prematurely. Also, it is legitimate
         use case to be able to identify the etchers and the dancers.</p>
-      <p>However:</p>
+      <p>However</p>
       <ol>
-         <li>We do, however, know that users at of our resources are not very
+         <li>We do know that users at of our resources are not very
           good at using fields. An interface allowing you to search
           portraiture subjects is very specialized use case. So is the use
           case to be able to search for senders and recipients of letters.</li>
-         <li> People do search for word in a title, but they do not search
-          for A life fragment separate from
+         <li>People do search for word in a title, but they do not search
+          for a sub-title A life fragment separate from the main title
           Either/or. Likewise they not particularly interested
           in making a difference between Enten — eller
           and Either/or. If they search for the latter they
@@ -552,18 +552,15 @@ AND
       </ol>
       <p>
           To make a useful service we have to aggregate data into reasonable
-          headlines. _[Dublin Core Metadata
-          Initiative](https://www.dublincore.org/)_ has actually a name for
-          this: The [Dumb-Down
-          Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/)
+          headlines. Dublin Core Metadata Initiative (<a href="#dcmi">DCMI</a>)
+          has actually a name for this: <a href="#dumb-down">The Dumb-Down Principle</a>.
         </p>
       <h2>The developer problems</h2>
       <p>From the developers point of view, metadata dumb-down can take place,
         either (i) when indexing or (ii) when searching.</p>
       <p>In either case, for a ballet performance we would dumb-down
-        _Composer_ ((<kbd>cmp</kbd>), Conductor ((<kbd>cnd</kbd>), Director ((<kbd>drt</kbd>) and Choreographer ((<kbd>chr</kbd>) to one single repeatable field
-        [creator](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/). It
-        would contain Igor Stravinsky (the transcribed, but perhaps
+        Composer (<kbd>cmp</kbd>), Conductor (<kbd>cnd</kbd>), Director (<kbd>drt</kbd>) and Choreographer (<kbd>chr</kbd>) to one single repeatable field
+        <a href="#creator">creator</a>. It would contain Igor Stravinsky (the transcribed, but perhaps
         also his name in Cyrillic), and obviously all other
         creatives. Most of the dancers would most likely go to the <a href="#contributor">contributor</a>
         field.</p>
@@ -666,6 +663,11 @@ AND
       <p id="dc-terms-date">
          <em>Date</em>. <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/">https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/</a>
       </p>
+      <p id="dcmi">
+         <em>Dublin Core Metadata Initiative</em>. <a href="https://www.dublincore.org/">https://www.dublincore.org/</a>
+      </p>
+      <p id="dumb-down"> Dumb-Down Principle. In: <em>DublinCore Glossary</em>. <a href="https://www.dublincore.org/resources/glossary/dumb-down_principle/">https://www.dublincore.org/resources/glossary/dumb-down_principle/</a>
+      </p>
       <p id="nested-documents"> Indexing Nested Child Documents. In: <em>Apache Solr Reference Guide</em>. <a href="https://solr.apache.org/guide/8_1/indexing-nested-documents.html">https://solr.apache.org/guide/8_1/indexing-nested-documents.html</a>
       </p>
       <p id="mods">
@@ -678,6 +680,9 @@ AND
          <em>Solr</em>. <a href="https://solr.apache.org">https://solr.apache.org</a>
       </p>
       <p id="lucene_query_parser"> The Standard Query Parser. In: <em>Apache Solr Reference Guide</em>. <a href="https://solr.apache.org/guide/6_6/the-standard-query-parser.html">https://solr.apache.org/guide/6_6/the-standard-query-parser.html</a>
+      </p>
+      <p id="creator">
+         <em>creator</em>. <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/">https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/</a>
       </p>
       <p id="schema.org">
          <em>schema.org</em>. <a href="https://schema.org">https://schema.org</a>

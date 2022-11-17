@@ -197,21 +197,21 @@ Also recall that I mentioned that my first Solr instructor dissuaded us from usi
 
 I hope I've been able to convince you that the fairly complicated metadata structures used in libraries are useful for patrons and staff. They were not invented for giving software developers gray hair and age prematurely. Also, it is legitimate use case to be able to identify the etchers and the dancers.
 
-However:
+However
 
-1. We do, however, know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
+1. We do know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
 
-1. People do search for word in a title, but they do not search for A life fragment separate from Either/or. Likewise they not particularly interested in making a difference between Enten — eller and Either/or. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
+1. People do search for word in a title, but they do not search for a sub-title A life fragment separate from the main title Either/or. Likewise they not particularly interested in making a difference between Enten — eller and Either/or. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
 
 1. You know, each performance of Весна священная (AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to Стравинский, Игорь Фёдорович (AKA Stravinsky, Igor Fyodorovich the composer). I could go on here. You could add from your own experience.
 
-To make a useful service we have to aggregate data into reasonable headlines. _[Dublin Core Metadata Initiative](https://www.dublincore.org/)_ has actually a name for this: The [Dumb-Down Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/) 
+To make a useful service we have to aggregate data into reasonable headlines. Dublin Core Metadata Initiative (DCMI) has actually a name for this: The Dumb-Down Principle.
 
 ## The developer problems
 
 From the developers point of view, metadata dumb-down can take place, either (i) when indexing or (ii) when searching.
 
-In either case, for a ballet performance we would dumb-down _Composer_ ((cmp), Conductor ((cnd), Director ((drt) and Choreographer ((chr) to one single repeatable field [creator](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/). It would contain Igor Stravinsky (the transcribed, but perhaps also his name in Cyrillic), and obviously all other creatives. Most of the dancers would most likely go to the contributor field.
+In either case, for a ballet performance we would dumb-down Composer (cmp), Conductor (cnd), Director (drt) and Choreographer (chr) to one single repeatable field creator. It would contain Igor Stravinsky (the transcribed, but perhaps also his name in Cyrillic), and obviously all other creatives. Most of the dancers would most likely go to the contributor field.
 
 Doing dumb-down at indexing would mean to create fields creator and contributor in the index, to do it when searching would imply to do it using the horrendous search syntax presented above. Then you have to do the same for title and other relevant fields.
 
@@ -294,6 +294,15 @@ _Date_
 <kbd>[https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/)</kbd>
 
 
+_Dublin Core Metadata Initiative_ 
+<kbd>[https://www.dublincore.org/](https://www.dublincore.org/)</kbd>
+
+
+Dumb-Down Principle.  In:
+_DublinCore Glossary_ 
+<kbd>[https://www.dublincore.org/resources/glossary/dumb-down_principle/](https://www.dublincore.org/resources/glossary/dumb-down_principle/)</kbd>
+
+
 Indexing Nested Child Documents.  In:
 _Apache Solr Reference Guide_ 
 <kbd>[https://solr.apache.org/guide/8_1/indexing-nested-documents.html](https://solr.apache.org/guide/8_1/indexing-nested-documents.html)</kbd>
@@ -314,6 +323,10 @@ _Solr_
 The Standard Query Parser.  In:
 _Apache Solr Reference Guide_ 
 <kbd>[https://solr.apache.org/guide/6_6/the-standard-query-parser.html](https://solr.apache.org/guide/6_6/the-standard-query-parser.html)</kbd>
+
+
+_creator_ 
+<kbd>[https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/)</kbd>
 
 
 _schema.org_ 

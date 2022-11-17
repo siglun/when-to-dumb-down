@@ -203,7 +203,9 @@ Notes
 \fB<xsl:apply-templates  mode="preserve"/>\fP
 </xsl:template>
 
-<xsl:template match="t:p/t:title"><xsl:text> \fI</xsl:text><xsl:apply-templates/><xsl:text>\fP </xsl:text></xsl:template>
+<xsl:template match="t:p/t:title|t:item/t:title">
+\fI<xsl:apply-templates  mode="preserve"/>\fP
+</xsl:template>
 
 <xsl:template match="t:hi[@rend='italic']|t:hi[@rend='italics']">
 \fI<xsl:apply-templates  mode="preserve"/>\fP
