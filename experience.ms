@@ -12,7 +12,7 @@ Post box 2149
 Denmark
 .AB
 .LP
-This is a discussion of how to index and present metadata with possibly innumerable number of fields. We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.
+This is a discussion of how to index and present metadata with possibly innumerable number of fields. We reject the idea to use the joins and hierarchically structured documents in a search engine like Solr.
 .LP
 Instead we turn to the dumb down concept used by metadata communities to describe what goes on when cross-walking a complex metadata system with a more shallow, less detailed one.
 .AE
@@ -33,10 +33,7 @@ The role of bibliographic structure
 .LP
 In a library we encounter data with much more structure than simple packages of attributes and values, but also much less structure than what you expect from data in
 .pdfhref L -D normal-form database normal form
-\&. Bibliographical data may
-\fBfor
-        instance\fP
-describe texts that
+\&. Bibliographical data may \fBfor instance\fP describe texts that
 .IP \s+1\(bu\s-1
 have one or more titles, each having different type (main title, subtitle, translated title, transcribed title, uniform title to iterate some of the frequently used ones)
 .IP \s+1\(bu\s-1
@@ -50,11 +47,7 @@ If we were using a RDBMS, the data on persons could be stored in one database ta
 .LP
 For a portrait photograph we have one person being the photographer, and another being the subject. The data on the subject can be as important as the data on the artist.
 .LP
-These data are important. For instance the dates are used for distinguishing between people with the same name. (The digital phone book krak.dk lists 43 now living persons named
-\fISøren Kierkegaard\fP
-, while
-\fIthe philosopher\fP
-died 1855). An important use case is how to decide whether a given object is free from copyright or not, such as when the originator has been dead for more than 75 years.
+These data are important. For instance the dates are used for distinguishing between people with the same name. (The digital phone book krak.dk lists 43 now living persons named \fISøren Kierkegaard\fP , while \fIthe philosopher\fP died 1855). An important use case is how to decide whether a given object is free from copyright or not, such as when the originator has been dead for more than 75 years.
 .LP
 Add to this that there are many more complications, like we may have multiple copies of a given title and that each copy may belong to different collections with very different provenance. For historical objects we may even have a manuscript in the manuscript and rare books collections and a modern pocket book in the open stocks.
 .LP
@@ -64,10 +57,7 @@ The user gets a far too long list of results which contains author, title and pe
 .LP
 If we grossly simplify the process, a user might be up to one of two things: (1) Finding or resolving a given reference, i.e., the right object, perhaps the right edition. Or (2) Finding information on a given topic. See these two as endpoints on a scale.
 .LP
-You may look for a particular book
-\fIEnten —  Eller
-        (Either/Or)\fP
-by
+You may look for a particular book \fIEnten —  Eller\fP ( \fIEither/Or\fP ) by
 \fIKierkegaard\fP
 (1843) or you might be interested in the role of this philosopher in your study of the origin of existentialism. In the former case you actually look for Kierkegaard in the author field, in the latter case you look for him in subject field.
 .KF
@@ -77,9 +67,7 @@ by
 .SH
 Encoding, indexing and using
 .LP
-Assume we are about to add metadata on
-\fIEnten —  eller\fP
-by
+Assume we are about to add metadata on \fIEnten —  eller\fP by
 \fISøren Kierkegaard\fP
 into a Solr index. What we get for that book might contain the data below. The example is encoded in a format called Metadata Object Description Schema (
 .pdfhref L -D mods MODS
@@ -127,43 +115,29 @@ and a
 \fIaut\fP
 as in author). The
 \fIname\fP
-also has multiple parts like family name (Kierkegaard), given name (Søren) and a date (1813/1855 which is ISO's way to express a
+also has multiple parts like family name (Kierkegaard), given name (Søren) and a date (1813/1855) which is ISO's way to express a
 .pdfhref L -D dc-terms-date date
-\&range i.e., the years between which the philosopher was alive. His
-\fIFragment of Life\fP
-.)
+\&range i.e., the years between which the philosopher was alive. His \fIFragment of Life\fP .
 .LP
 To get the birth and death dates you have to parse a string. As a matter of fact, the name on the book cover wasn't
 \fISøren Kierkegaard\fP
 but
 \fIVictor Eremita\fP
-(Victorious hermit), encoded as an (
-\f(CR<alternativeName> ... </alternativeName>\fP
-). A telling pseudonym of the author of The Seducer's Diary. Søren was good at
+(Victorious hermit), encoded as an ( \f(CR<alternativeName> ... </alternativeName>\fP ). A telling pseudonym of the author of The Seducer's Diary. Søren was good at
 .pdfhref L -D pseudonyms pseudonyms
 \&.
 .LP
-The
-\f(CR<md:role> ... </md:role>\fP
-permits the cataloger to encode that a person called
+The \f(CR<md:role> ... </md:role>\fP permits the cataloger to encode that a person called
 \fISøren\fP
-has the
-\f(CRaut\fP
-relation to the work. Library of Congress have lists with hundreds of such
+has the \f(CRaut\fP relation to the work. Library of Congress have lists with hundreds of such
 .pdfhref L -D relators relators
 \&. Actually, each of those could be seen as a field. The thing is that even in a large bibliographic database there would be very few records where
 \fIData manager\fP
-(
-\f(CRdtm\fP
-),
+( \f(CRdtm\fP ),
 \fIFormer owner\fP
-(
-\f(CRfmo\fP
-) and
+( \f(CRfmo\fP ) and
 \fILibrettist\fP
-(
-\f(CRlbt\fP
-) would contain any data.
+( \f(CRlbt\fP ) would contain any data.
 .LP
 Now we've identified a lot of possible fields to use, for cataloging and for information retrieval. They have perfectly reasonable use cases, and all of them are used in everyday library practice, so how do I get them into my Solr index?
 .SH
@@ -210,7 +184,9 @@ In our experiments we transformed MODS records to nested Solr records, such as t
         \fP
 .DE
 .LP
-If you are familiar with the workings of Solr, you know that the data-model (if I may label it as such) used is configured in a file call `schema.xml`. It basically contains list of fields that can be used in what is referred to as `Solr documents`. In such a schema you may add
+If you are familiar with the workings of Solr, you know that the data-model (if I may label it as such) used is configured in a file call \f(CRschema.xml.\fP It basically contains list of fields that can be used in what is referred to as
+\fISolr documents.\fP
+In such a schema you may add
 .DS L
 \f(CR\s-2
         <field     name="_nest_path_" 
@@ -237,13 +213,9 @@ documentation.
 .LP
 The nested indexing works since the indexer stores an
 \fIXPath\fP
-like entity for each record, making it possible track which Solr document which is parent and which document which is child which is the parent. That info is in the
-\f(CR_nest_path_\fP
-field and Solr does that automatically whenever it starts a new document inside a parent one.
+like entity for each record, making it possible track which Solr document which is parent and which document which is child which is the parent. That info is in the \f(CR_nest_path_\fP field and Solr does that automatically whenever it starts a new document inside a parent one.
 .LP
-You will get that information back from the server if you add a Solr field list argument (
-\f(CRfl\fP
-) at search time
+You will get that information back from the server if you add a Solr field list argument ( \f(CRfl\fP ) at search time
 .DS L
 \f(CR\s-2
         fl=*,[child]
@@ -261,25 +233,13 @@ AND
         \fP
 .DE
 .LP
-The constructs
-\f(CR{!parent ... }\fP
-and
-\f(CR{!edismax ... }\fP
-are so called local parameters in a Solr request. The former specifies that we want Solr to return parent documents such the described:true, the latter tells Solr we want the author to be Søren and title to be Enten — eller. Now we can reasonably easy search and retrieve information on the
+The constructs \f(CR{!parent ... }\fP and \f(CR{!edismax ... }\fP are so called local parameters in a Solr request. The former specifies that we want Solr to return parent documents such the described:true, the latter tells Solr we want the author to be Søren and title to be Enten — eller. Now we can reasonably easy search and retrieve information on the
 \fIEtcher\fP
-(
-\f(CRetr\fP
-) and
+( \f(CRetr\fP ) and
 \fIDancer\fP
-(
-\f(CRdnc\fP
-), when applicable.
+( \f(CRdnc\fP ), when applicable.
 .LP
-This is a special case of
-\f(CRjoin\fP
-as implemented in Solr. Recall that joins are at very very core of
-\f(CRSQL\fP
-, and one of the features making the RDBMS such a powerful tool.
+This is a special case of \f(CRjoin\fP as implemented in Solr. Recall that joins are at very very core of \f(CRSQL\fP , and one of the features making the RDBMS such a powerful tool.
 .LP
 Also recall that I mentioned that my first Solr instructor dissuaded us from using search engines as data stores. Does that generalize to other features coming from the database world?
 .SH
@@ -291,19 +251,9 @@ However
 .IP 1
 We do know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
 .IP 2
-People do search for word in a title, but they do not search for a sub-title
-\fIA life fragment\fP
-separate from the main title
-\fIEither/or\fP
-. Likewise they not particularly interested in making a difference between
-\fIEnten — eller\fP
-and
-\fIEither/or\fP
-. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
+People do search for word in a title, but they do not search for a sub-title \fIA life fragment\fP separate from the main title \fIEither/or\fP . Likewise they not particularly interested in making a difference between \fIEnten — eller\fP and \fIEither/or\fP . If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
 .IP 3
-You know, each performance of
-\fIВесна священная\fP
-(AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to
+You know, each performance of \fIВесна священная\fP (AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to
 \fIСтравинский, Игорь Фёдорович\fP
 (AKA
 \fIStravinsky, Igor Fyodorovich\fP
@@ -321,33 +271,17 @@ From the developers point of view, metadata dumb-down can take place, either (i)
 .LP
 In either case, for a ballet performance we would dumb-down
 \fIComposer\fP
-(
-\f(CRcmp\fP
-),
+( \f(CRcmp\fP ),
 \fIConductor\fP
-(
-\f(CRcnd\fP
-), Director (
-\f(CRdrt\fP
-) and Choreographer (
-\f(CRchr\fP
-) to one single repeatable field
+( \f(CRcnd\fP ), Director ( \f(CRdrt\fP ) and Choreographer ( \f(CRchr\fP ) to one single repeatable field
 .pdfhref L -D creator creator
 \&. It would contain Igor Stravinsky (the transcribed, but perhaps also his name in Cyrillic), and obviously all other creatives. Most of the dancers would most likely go to the
 .pdfhref L -D contributor contributor
 \&field.
 .LP
-Doing dumb-down at indexing would mean to create fields
-\f(CRcreator\fP
-and
-\f(CRcontributor\fP
-in the index, to do it when searching would imply to do it using the horrendous search syntax presented above. Then you have to do the same for title and other relevant fields.
+Doing dumb-down at indexing would mean to create fields \f(CRcreator\fP and \f(CRcontributor\fP in the index, to do it when searching would imply to do it using the horrendous search syntax presented above. Then you have to do the same for title and other relevant fields.
 .LP
-In the case of
-\fIEither/or\fP
-,
-\fIEnten  — eller\fP
-the dumb-down Solr record would look somewhat as the record below:
+In the case of \fIEither/or\fP , \fIEnten  — eller\fP the dumb-down Solr record would look somewhat as the record below:
 .DS L
 \f(CR\s-2
         [
@@ -379,13 +313,9 @@ Hence when indexing we only create one record, and no joins are needed. A query 
 .LP
 The drawback being that the in the index we cannot tell the difference between
 \fIIgor Stravinsky\fP
-(
-\f(CRcmp\fP
-) and the
+( \f(CRcmp\fP ) and the
 \fIConductor\fP
-(
-\f(CRcnd\fP
-). Both are creators. The dumbed-down index has lost most of the information you need to decide whether you want to listen to an album or see a performance.
+( \f(CRcnd\fP ). Both are creators. The dumbed-down index has lost most of the information you need to decide whether you want to listen to an album or see a performance.
 .IP \s+1\(bu\s-1
 At indexing: Your search syntax is nice and clean. You have to use some other method to present the data in the detailed view.
 .IP \s+1\(bu\s-1
@@ -393,9 +323,7 @@ At search: Your search syntax is very complicated. On the other hand, you have a
 .IP \s+1\(bu\s-1
 At a practical level, the nested Solr seems more or less experimental, and the documentation is less than excellent. Only the  
 .pdfhref W -D https://github.com/siglun/danish-sonnets/blob/main/lucene_query_parser lucene query parser
-supports it, and when searching with (for example)
-\f(CRedismax\fP
-query parser you run into the syntactic problem with local parameters demonstrated above.
+supports it, and when searching with (for example) \f(CRedismax\fP query parser you run into the syntactic problem with local parameters demonstrated above.
 .LP
 If we are to describe the situation in Model-View-Controller (MVC) terms, the second (i.e., the at search implementation) looks nice. One model, one controller but (perhaps) two views. When doing it at indexing, we need two models and an architecture diagram might look much more messy. Semantic exercise to make the dumb-down scheme might seem complicated. The code, however, is much simplified.
 .LP

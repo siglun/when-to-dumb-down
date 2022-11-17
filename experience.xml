@@ -49,7 +49,7 @@
       </docAuthor>
       <div type="abstract">
 	<p>This is a discussion of how to index and present metadata with possibly innumerable number of fields.
-        We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.</p>
+        We reject the idea to use the joins and hierarchically structured documents in a search engine like Solr.</p>
         <p>Instead we turn to the dumb down concept used by metadata
         communities to describe what goes on when cross-walking a
         complex metadata system with a more shallow, less detailed
@@ -93,9 +93,8 @@
         <p>In a library we encounter data with much more structure
         than simple packages of attributes and values, but also much
         less structure than what you expect from data in <ref
-        target="#normal-form">database normal
-        form</ref>. Bibliographical data may <hi rend="bold">for
-        instance</hi> describe texts that</p>
+        target="#normal-form">database normal form</ref>.
+        Bibliographical data may <hi rend="bold">for instance</hi> describe texts that</p>
 
         <list>
           <item>have one or more titles, each having different type (main title, subtitle, translated title, transcribed title, uniform title to iterate some of the frequently used ones)</item>
@@ -150,8 +149,8 @@
         Finding information on a given topic. See these two as
         endpoints on a scale.</p>
 
-        <p>You may look for a particular book <title>Enten &#8212;  Eller
-        (Either/Or)</title> by <name>Kierkegaard</name>
+        <p>You may look for a particular book
+        <title>Enten &#8212;  Eller</title> (<title>Either/Or</title>) by <name>Kierkegaard</name>
         (<date>1843</date>) or you might be interested in the role of
         this philosopher in your study of the origin of
         existentialism. In the former case you actually look for
@@ -215,10 +214,11 @@
         <term>name</term>, which has a <term>role</term> (which is
         <term>aut</term> as in author). The <term>name</term> also has
         multiple parts like family name (Kierkegaard), given name
-        (Søren) and a date (1813/1855 which is ISO's way to express a
+        (Søren) and a date (1813/1855) which is ISO's way to express a
         <ref target="#dc-terms-date">date</ref> range i.e., the years
-        between which the philosopher was alive. His <hi
-        rend='italic'>Fragment of Life</hi>.)</p>
+        between which the philosopher was alive.
+        His
+        <hi rend="italic">Fragment of Life</hi>.</p>
 
         <p>To get the birth and death dates you have to parse a
         string. As a matter of fact, the name on the book cover wasn't
@@ -298,8 +298,8 @@
 
         <p>If you are familiar with the workings of Solr, you know that the
         data-model (if I may label it as such) used is configured in a file
-        call `schema.xml`. It basically contains list of fields that can be
-        used in what is referred to as `Solr documents`. In such a schema you
+        call <hi rend='monospaced'>schema.xml.</hi> It basically contains list of fields that can be
+        used in what is referred to as <term>Solr documents.</term> In such a schema you
         may add 
         </p>
 

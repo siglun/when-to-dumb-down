@@ -12,7 +12,7 @@
 ## Abstract  
 
 
-This is a discussion of how to index and present metadata with possibly innumerable number of fields. We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.
+This is a discussion of how to index and present metadata with possibly innumerable number of fields. We reject the idea to use the joins and hierarchically structured documents in a search engine like Solr.
 
 Instead we turn to the dumb down concept used by metadata communities to describe what goes on when cross-walking a complex metadata system with a more shallow, less detailed one.
 
@@ -93,7 +93,7 @@ Assume we are about to add metadata on Enten — eller by Søren Kierkegaard int
 
         
 ```
-This is a fake record I created for the purpose of this paper. The work has a title and a name, which has a role (which is aut as in author). The name also has multiple parts like family name (Kierkegaard), given name (Søren) and a date (1813/1855 which is ISO's way to express a date range i.e., the years between which the philosopher was alive. His Fragment of Life.)
+This is a fake record I created for the purpose of this paper. The work has a title and a name, which has a role (which is aut as in author). The name also has multiple parts like family name (Kierkegaard), given name (Søren) and a date (1813/1855) which is ISO's way to express a date range i.e., the years between which the philosopher was alive. His Fragment of Life.
 
 To get the birth and death dates you have to parse a string. As a matter of fact, the name on the book cover wasn't Søren Kierkegaard but Victor Eremita (Victorious hermit), encoded as an (<alternativeName> ... </alternativeName>). A telling pseudonym of the author of The Seducer's Diary. Søren was good at pseudonyms.
 
@@ -143,7 +143,7 @@ In our experiments we transformed MODS records to nested Solr records, such as t
  
         
 ```
-If you are familiar with the workings of Solr, you know that the data-model (if I may label it as such) used is configured in a file call `schema.xml`. It basically contains list of fields that can be used in what is referred to as `Solr documents`. In such a schema you may add 
+If you are familiar with the workings of Solr, you know that the data-model (if I may label it as such) used is configured in a file call schema.xml. It basically contains list of fields that can be used in what is referred to as Solr documents. In such a schema you may add
 ```
 
         <field     name="_nest_path_" 
