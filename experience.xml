@@ -15,8 +15,7 @@
             <placeName>Copenhagen</placeName>
             <placeName>Denmark</placeName>
           </affiliation>
-          <ref target="https://twitter.com/sigfridlundberg">https://twitter.com/sigfridlundberg</ref>
-          <ref target="https://github.com/siglun">https://sigfrid-lundberg.se</ref>
+       
         </author>
       </titleStmt>
       <publicationStmt>
@@ -46,6 +45,8 @@
 	  <addrLine>1016 Copenhagen K</addrLine>
 	  <addrLine>Denmark</addrLine>
 	</address>
+         <ref target="https://twitter.com/sigfridlundberg">https://twitter.com/sigfridlundberg</ref>
+         <ref target="https://github.com/siglun">https://sigfrid-lundberg.se</ref>
       </docAuthor>
       <div type="abstract">
 	<p>This is a discussion of how to index and present metadata with possibly innumerable number of fields.
@@ -591,6 +592,12 @@ AND
             <title level="m">schema.org</title>
             <ref target="https://schema.org"/>
           </bibl>
+
+          <bibl xml:id="solr">
+            <title level="m">Solr</title>
+            <ref target="https://solr.apache.org"/>
+          </bibl>
+          
         </listBibl>
       </div>
     </body>

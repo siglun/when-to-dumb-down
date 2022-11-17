@@ -303,6 +303,10 @@ Library of Congress_Metadata Object Description Schema_
 <kbd>[https://www.loc.gov/standards/mods/](https://www.loc.gov/standards/mods/)</kbd>
 
 
+_Solr_ 
+<kbd>[https://solr.apache.org](https://solr.apache.org)</kbd>
+
+
 The Standard Query Parser.  In:
 _Apache Solr Reference Guide_ 
 <kbd>[https://solr.apache.org/guide/6_6/the-standard-query-parser.html](https://solr.apache.org/guide/6_6/the-standard-query-parser.html)</kbd>

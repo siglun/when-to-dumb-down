@@ -431,6 +431,13 @@ Library of Congress\fIMARC Code List for Relators\fP
 .pdfhref W -D https://www.loc.gov/marc/relators/relacode.html https://www.loc.gov/marc/relators/relacode.html
 \fP\s+2
 .XP
+.pdfhref M -N solr
+\fISolr\fP 
+.br  
+\s-2\f(CR
+.pdfhref W -D https://solr.apache.org https://solr.apache.org
+\fP\s+2
+.XP
 .pdfhref M -N lucene_query_parser
 The Standard Query Parser.  In:
 \fIApache Solr Reference Guide\fP 
