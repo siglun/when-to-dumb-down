@@ -28,7 +28,7 @@ At the first Solr workshop I participated the teacher reiterated over and over a
 
 ## The role of bibliographic structure
 
-In a library we encounter data with much more structure than simple packages of attributes and values, but also much less structure than what you expect from data in [database normal form](https://en.wikipedia.org/wiki/Database_normalization). Bibliographical data may *for instance* describe texts that
+In a library we encounter data with much more structure than simple packages of attributes and values, but also much less structure than what you expect from data in [database normal form](https://en.wikipedia.org/wiki/Database_normalization). Bibliographical data may for instance describe texts that
 
 * have one or more titles, each having different type (main title, subtitle, translated title, transcribed title, uniform title to iterate some of the frequently used ones)
 
