@@ -199,11 +199,11 @@ I hope I've been able to convince you that the fairly complicated metadata struc
 
 However:
 
-* We do, however, know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
+1. We do, however, know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
 
-* People do search for word in a title, but they do not search for A life fragment separate from Either/or. Likewise they not particularly interested in making a difference between Enten — eller and Either/or. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
+1. People do search for word in a title, but they do not search for A life fragment separate from Either/or. Likewise they not particularly interested in making a difference between Enten — eller and Either/or. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
 
-* You know, each performance of Весна священная (AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to Стравинский, Игорь Фёдорович (AKA Stravinsky, Igor Fyodorovich the composer). I could go on here. You could add from your own experience.
+1. You know, each performance of Весна священная (AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to Стравинский, Игорь Фёдорович (AKA Stravinsky, Igor Fyodorovich the composer). I could go on here. You could add from your own experience.
 
 To make a useful service we have to aggregate data into reasonable headlines. _[Dublin Core Metadata Initiative](https://www.dublincore.org/)_ has actually a name for this: The [Dumb-Down Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/) 
 

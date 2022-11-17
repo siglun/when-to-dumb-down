@@ -273,11 +273,11 @@ The user problems
 I hope I've been able to convince you that the fairly complicated metadata structures used in libraries are useful for patrons and staff. They were not invented for giving software developers gray hair and age prematurely. Also, it is legitimate use case to be able to identify the etchers and the dancers.
 .LP
 However:
-.IP \s+1\(bu\s-1
+.IP 1
 We do, however, know that users at of our resources are not very good at using fields. An interface allowing you to search portraiture subjects is very specialized use case. So is the use case to be able to search for senders and recipients of letters.
-.IP \s+1\(bu\s-1
+.IP 2
 People do search for word in a title, but they do not search forA life fragmentseparate fromEither/or. Likewise they not particularly interested in making a difference betweenEnten — ellerandEither/or. If they search for the latter they presumably want an English translation, but when studying a detailed presentation they are almost certainly interested to know that Either/or is actually a translation.
-.IP \s+1\(bu\s-1
+.IP 3
 You know, each performance ofВесна священная(AKA The Rite of Spring) has a conductor, director and choreographer and a lot of dancers, obviously in addition to
 \fIСтравинский, Игорь Фёдорович\fP
 (AKA

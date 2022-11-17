@@ -385,7 +385,7 @@ AND
 
         <p>However:</p>
 
-        <list>
+        <list type='ordered'>
           <item>We do, however, know that users at of our resources are not very
           good at using fields. An interface allowing you to search
           portraiture subjects is very specialized use case. So is the use
