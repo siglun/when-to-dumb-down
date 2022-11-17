@@ -14,7 +14,7 @@ Denmark
 .LP
 This is a discussion of how to index and present metadata with possibly innumerable number of fields. We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.
 .LP
-Instead we turn to the dumb down concept used by metadata communities to describe what goes on when crosswalking a complex metadata system with a more shallow, less detailed one.
+Instead we turn to the dumb down concept used by metadata communities to describe what goes on when cross-walking a complex metadata system with a more shallow, less detailed one.
 .AE
 .SH
 Introduction
@@ -54,7 +54,7 @@ These data are important. For instance the dates are used for distinguishing bet
 \fISøren Kierkegaard\fP
 , while
 \fIthe philosopher\fP
-died 1855). An importand use case is how to decide whether a given object is free from copyright or not, such as when the originator has been dead for more than 75 years.
+died 1855). An important use case is how to decide whether a given object is free from copyright or not, such as when the originator has been dead for more than 75 years.
 .LP
 Add to this that there are many more complications, like we may have multiple copies of a given title and that each copy may belong to different collections with very different provenance. For historical objects we may even have a manuscript in the manuscript and rare books collections and a modern pocket book in the open stocks.
 .LP
@@ -83,7 +83,7 @@ by
 \fISøren Kierkegaard\fP
 into a Solr index. What we get for that book might contain the data below. The example is encoded in a format called Metadata Object Description Schema (
 .pdfhref L -D mods MODS
-\&). Note that the namespace prefix `md` stands for the URI `http://www.loc.gov/mods/v3`
+\&). Note that the name-space prefix `md` stands for the URI `http://www.loc.gov/mods/v3`
 .DS L
 \f(CR\s-2
         <md:titleInfo>
@@ -149,7 +149,7 @@ permits the cataloger to encode that a person called
 \fISøren\fP
 has the
 \f(CRaut\fP
-relation to the work. Library of Congress have lists with houndreds of such
+relation to the work. Library of Congress have lists with hundreds of such
 .pdfhref L -D relators relators
 \&. Actually, each of those could be seen as a field. The thing is that even in a large bibliographic database there would be very few records where
 \fIData manager\fP
@@ -347,7 +347,7 @@ In the case of
 \fIEither/or\fP
 ,
 \fIEnten  — eller\fP
-the dumb-down solr record would look somewhat as the record below:
+the dumb-down Solr record would look somewhat as the record below:
 .DS L
 \f(CR\s-2
         [
@@ -403,7 +403,7 @@ The fact that each substructure in the nested Solr document must follow the same
 .LP
 Finally, it is my experience that it easier to accommodate multiple metadata models and standards in the same index with dumb-down at indexing. In our case we opted for transforming our MODS records to the
 .pdfhref L -D schema.org schema.org
-\&ontology for the detailed presentation. Hence, retrieval will be from a separate datastore. The schema.org ontology is rich enough for our landing pages and detailed result sets. It provides an extra bonus, we hope, in that Google would actually be able to index our collection.
+\&ontology for the detailed presentation. Hence, retrieval will be from a separate data store. The schema.org ontology is rich enough for our landing pages and detailed result sets. It provides an extra bonus, we hope, in that Google would actually be able to index our collection.
 .LP
 The only advantage I can see with at search time dumb-down is that we would have only a single model in our search application.
 .SH

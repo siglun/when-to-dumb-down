@@ -14,7 +14,7 @@
 
 This is a discussion of how to index and present metadata with possibly innumerable number of fields. We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.
 
-Instead we turn to the dumb down concept used by metadata communities to describe what goes on when crosswalking a complex metadata system with a more shallow, less detailed one.
+Instead we turn to the dumb down concept used by metadata communities to describe what goes on when cross-walking a complex metadata system with a more shallow, less detailed one.
 
 Are passions, then, the Pagans of the soul?Reason alone baptized? alone ordain'dTo touch things sacred?
 (Edward Young -- 1683-1765)
@@ -42,7 +42,7 @@ If we were using a RDBMS, the data on persons could be stored in one database ta
 
 For a portrait photograph we have one person being the photographer, and another being the subject. The data on the subject can be as important as the data on the artist.
 
-These data are important. For instance the dates are used for distinguishing between people with the same name. (The digital phone book krak.dk lists 43 now living persons named Søren Kierkegaard, while the philosopher died 1855). An importand use case is how to decide whether a given object is free from copyright or not, such as when the originator has been dead for more than 75 years.
+These data are important. For instance the dates are used for distinguishing between people with the same name. (The digital phone book krak.dk lists 43 now living persons named Søren Kierkegaard, while the philosopher died 1855). An important use case is how to decide whether a given object is free from copyright or not, such as when the originator has been dead for more than 75 years.
 
 Add to this that there are many more complications, like we may have multiple copies of a given title and that each copy may belong to different collections with very different provenance. For historical objects we may even have a manuscript in the manuscript and rare books collections and a modern pocket book in the open stocks.
 
@@ -56,7 +56,7 @@ You may look for a particular book Enten — Eller (Either/Or) by Kierkegaard (1
 
 ## Encoding, indexing and using
 
-Assume we are about to add metadata on Enten — eller by Søren Kierkegaard into a Solr index. What we get for that book might contain the data below. The example is encoded in a format called Metadata Object Description Schema (MODS). Note that the namespace prefix `md` stands for the URI `http://www.loc.gov/mods/v3`
+Assume we are about to add metadata on Enten — eller by Søren Kierkegaard into a Solr index. What we get for that book might contain the data below. The example is encoded in a format called Metadata Object Description Schema (MODS). Note that the name-space prefix `md` stands for the URI `http://www.loc.gov/mods/v3`
 ```
 
         <md:titleInfo>
@@ -97,7 +97,7 @@ This is a fake record I created for the purpose of this paper. The work has a ti
 
 To get the birth and death dates you have to parse a string. As a matter of fact, the name on the book cover wasn't Søren Kierkegaard but Victor Eremita (Victorious hermit), encoded as an (<alternativeName> ... </alternativeName>). A telling pseudonym of the author of The Seducer's Diary. Søren was good at pseudonyms.
 
-The <md:role> ... </md:role> permits the cataloger to encode that a person called Søren has the aut relation to the work. Library of Congress have lists with houndreds of such relators. Actually, each of those could be seen as a field. The thing is that even in a large bibliographic database there would be very few records where Data manager (dtm), Former owner (fmo) and Librettist (lbt) would contain any data.
+The <md:role> ... </md:role> permits the cataloger to encode that a person called Søren has the aut relation to the work. Library of Congress have lists with hundreds of such relators. Actually, each of those could be seen as a field. The thing is that even in a large bibliographic database there would be very few records where Data manager (dtm), Former owner (fmo) and Librettist (lbt) would contain any data.
 
 Now we've identified a lot of possible fields to use, for cataloging and for information retrieval. They have perfectly reasonable use cases, and all of them are used in everyday library practice, so how do I get them into my Solr index?
 
@@ -215,7 +215,7 @@ In either case, for a ballet performance we would dumb-down Composer (cmp), Cond
 
 Doing dumb-down at indexing would mean to create fields creator and contributor in the index, to do it when searching would imply to do it using the horrendous search syntax presented above. Then you have to do the same for title and other relevant fields.
 
-In the case of Either/or, Enten — eller the dumb-down solr record would look somewhat as the record below:
+In the case of Either/or, Enten — eller the dumb-down Solr record would look somewhat as the record below:
 ```
 
         [
@@ -255,7 +255,7 @@ If we are to describe the situation in Model-View-Controller (MVC) terms, the se
 
 The fact that each substructure in the nested Solr document must follow the same schema is an annoying feature. It isn't important, but persons, subjects and whatever all have the same content model (in the sense of an XML DTD or Schema), makes the setup much less attractive.
 
-Finally, it is my experience that it easier to accommodate multiple metadata models and standards in the same index with dumb-down at indexing. In our case we opted for transforming our MODS records to the schema.org ontology for the detailed presentation. Hence, retrieval will be from a separate datastore. The schema.org ontology is rich enough for our landing pages and detailed result sets. It provides an extra bonus, we hope, in that Google would actually be able to index our collection.
+Finally, it is my experience that it easier to accommodate multiple metadata models and standards in the same index with dumb-down at indexing. In our case we opted for transforming our MODS records to the schema.org ontology for the detailed presentation. Hence, retrieval will be from a separate data store. The schema.org ontology is rich enough for our landing pages and detailed result sets. It provides an extra bonus, we hope, in that Google would actually be able to index our collection.
 
 The only advantage I can see with at search time dumb-down is that we would have only a single model in our search application.
 

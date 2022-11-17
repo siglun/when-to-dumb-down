@@ -265,7 +265,7 @@ p.version {
          <p>This is a discussion of how to index and present metadata with possibly innumerable number of fields.
         We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.</p>
          <p>Instead we turn to the dumb down concept used by metadata
-        communities to describe what goes on when crosswalking a
+        communities to describe what goes on when cross-walking a
         complex metadata system with a more shallow, less detailed
         one.</p>
       </blockquote>
@@ -312,7 +312,7 @@ p.version {
       <p>These data are important. For instance the dates are used
         for distinguishing between people with the same name. (The
         digital phone book krak.dk lists 43 now living persons named
-        Søren Kierkegaard, while the philosopher died 1855). An importand use
+        Søren Kierkegaard, while the philosopher died 1855). An important use
         case is how to decide whether a given object is free from
         copyright or not, such as when the originator has been dead
         for more than 75 years.</p>
@@ -354,7 +354,7 @@ p.version {
         book might contain the data below. The example is encoded in a
         format called Metadata Object Description
         Schema (<a href="#mods">MODS</a>). Note that the
-        namespace prefix `md` stands for the URI
+        name-space prefix `md` stands for the URI
         `http://www.loc.gov/mods/v3`</p>
       <pre>
         &lt;md:titleInfo&gt;
@@ -407,7 +407,7 @@ p.version {
       <p>The <kbd>&lt;md:role&gt; ... &lt;/md:role&gt;</kbd> permits the
         cataloger to encode that a person called Søren
         has the <kbd>aut</kbd> relation to the
-        work. Library of Congress have lists with houndreds of such
+        work. Library of Congress have lists with hundreds of such
         <a href="#relators">relators</a>. Actually, each of
         those could be seen as a field. The thing is that even in a
         large bibliographic database there would be very few records
@@ -568,7 +568,7 @@ AND
         <kbd>contributor</kbd> in the index, to do it when searching would imply to do
         it using the horrendous search syntax presented above. Then you have
         to do the same for title and other relevant fields.</p>
-      <p>In the case of <em>Either/or</em>, <em>Enten  — eller</em> the dumb-down solr record
+      <p>In the case of <em>Either/or</em>, <em>Enten  — eller</em> the dumb-down Solr record
         would look somewhat as the record below:</p>
       <pre>
         [
@@ -627,7 +627,7 @@ AND
         dumb-down at indexing. In our case we opted for transforming
         our MODS records to the <a href="#schema.org">schema.org</a> ontology for the
         detailed presentation. Hence, retrieval will be from a
-        separate datastore. The schema.org ontology is rich enough for
+        separate data store. The schema.org ontology is rich enough for
         our landing pages and detailed result sets. It provides an
         extra bonus, we hope, in that Google would actually be able to
         index our collection.</p>
