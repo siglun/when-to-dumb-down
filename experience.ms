@@ -19,7 +19,9 @@ Instead we turn to the dumb down concept used by metadata communities to describ
 .SH
 Introduction
 .LP
-The Royal Danish Library has been using the Solr (https://solr.apache.org/) search engine for at least a decade. Almost all projects that need some search facilities are using it. A Swiss army knife for searching in small as well as well as big data sets. A trusty tool that provide many advantages to the alternative to use a relational database management system (RDBMS) when working with resource discovery systems.
+The Royal Danish Library has been using the
+.pdfhref L -D solr Solr
+\&search engine for at least a decade. Almost all projects that need some search facilities are using it. A Swiss army knife for searching in small as well as well as big data sets. A trusty tool that provide many advantages to the alternative to use a relational database management system (RDBMS) when working with resource discovery systems.
 .LP
 At the first Solr workshop I participated the teacher reiterated over and over again that Solr is a search engine, not a data management tool. Although Solr can Create, Retrieve, Update and Delete
 .pdfhref L -D crud (CRUD)

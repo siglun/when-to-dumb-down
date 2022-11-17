@@ -22,7 +22,7 @@ Are passions, then, the Pagans of the soul?Reason alone baptized? alone ordain'd
 
 ## Introduction
 
-The Royal Danish Library has been using the Solr (https://solr.apache.org/) search engine for at least a decade. Almost all projects that need some search facilities are using it. A Swiss army knife for searching in small as well as well as big data sets. A trusty tool that provide many advantages to the alternative to use a relational database management system (RDBMS) when working with resource discovery systems. 
+The Royal Danish Library has been using the Solr search engine for at least a decade. Almost all projects that need some search facilities are using it. A Swiss army knife for searching in small as well as well as big data sets. A trusty tool that provide many advantages to the alternative to use a relational database management system (RDBMS) when working with resource discovery systems.
 
 At the first Solr workshop I participated the teacher reiterated over and over again that Solr is a search engine, not a data management tool. Although Solr can Create, Retrieve, Update and Delete (CRUD) documents, the transactions cannot really be characterized as having Atomicity, Consistency, Isolation and Durability (ACID)
 
