@@ -40,7 +40,6 @@
       <docAuthor>
 	<name>Sigfrid Lundberg</name>
 	<address>
-	  <addrLine>slu@kb.dk</addrLine>
 	  <addrLine>Digital Transformation</addrLine>
 	  <addrLine>Royal Danish Library</addrLine>
 	  <addrLine>Post box 2149</addrLine>
@@ -48,16 +47,26 @@
 	  <addrLine>Denmark</addrLine>
 	</address>
       </docAuthor>
+      <div type="abstract">
+	<p>This is a discussion of how to index and present metadata with possibly innumerable number of fields.
+        We reject the idea to use the joins and hierarchically structured documents in a search engine like SOLR.</p>
+        <p>Instead we turn to the dumb down concept used by metadata
+        communities to describe what goes on when crosswalking a
+        complex metadata system with a more shallow, less detailed
+        one.</p>
+      </div>
+      <epigraph>
+        <lg>
+          <l>Are passions, then, the Pagans of the soul?</l>
+          <l>Reason alone baptized? alone ordain'd</l>
+          <l>To touch things sacred?</l>
+        </lg>
+        <p>(Edward Young -- 1683-1765)</p>
+      </epigraph>
     </front>
     <body>
       <div>
         <head>Introduction</head>
-        <epigraph>
-          <p>Are passions, then, the Pagans of the soul?
-          Reason alone baptized? alone ordain'd
-          To touch things sacred?
-          (Edward Young -- 1683-1765)</p>
-        </epigraph>
         <p>
           The Royal Danish Library has been using the Solr
           (https://solr.apache.org/) search engine for at least a decade. Almost
@@ -71,10 +80,10 @@
           At the first Solr workshop I participated the teacher reiterated over
           and over again that Solr is a search engine, not a data management
           tool. Although Solr can Create, Retrieve, Update and Delete
-          ([CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete))
+          <ref target="#crud">(CRUD)</ref>
           documents, the transactions cannot really be characterized as having
           Atomicity, Consistency, Isolation and Durability
-          ([ACID](https://en.wikipedia.org/wiki/ACID)).
+          <ref target="#acid">(ACID)</ref>
         </p>
       </div>
       <div>
@@ -108,10 +117,11 @@
         <p>These data are important. For instance the dates are used
         for distinguishing between people with the same name. (The
         digital phone book krak.dk lists 43 now living persons named
-        _Søren Kierkegaard_, while _the philosopher_ died 1855). An
-        import use case is how to decide whether a given object is
-        free from copyright or not, such as when the originator has
-        been dead for more than 75 years.</p>
+        <hi rend="italic">Søren Kierkegaard</hi>, while <hi
+        rend="italic">the philosopher</hi> died 1855). An importand use
+        case is how to decide whether a given object is free from
+        copyright or not, such as when the originator has been dead
+        for more than 75 years.</p>
 
         <p>Add to this that there are many more complications, like we
         may have multiple copies of a given title and that each copy
@@ -139,7 +149,7 @@
         Finding information on a given topic. See these two as
         endpoints on a scale.</p>
 
-        <p>You may look for a particular book <title>Enten - Eller
+        <p>You may look for a particular book <title>Enten &#8212;  Eller
         (Either/Or)</title> by <name>Kierkegaard</name>
         (<date>1843</date>) or you might be interested in the role of
         this philosopher in your study of the origin of
@@ -149,85 +159,90 @@
 
         <figure>
           <graphic url="https://github.com/siglun/danish-sonnets/raw/main/sks-ee1-ill_k1.jpg"/>
-          <head>Enten - eller cover page</head>
+          <!-- head>Enten - eller cover page</head -->
         </figure>
       </div>
 
       <div>
         <head>Encoding, indexing and using</head>
 
-        <p>Assume we are about to add metadata on _Enten - eller_ by
-        _Søren Kierkegaard_ into a Solr index. What we get for that
+        <p>Assume we are about to add metadata on <title>Enten &#8212;  eller</title> by
+        <name>Søren Kierkegaard</name> into a Solr index. What we get for that
         book might contain the data below. The example is encoded in a
-        format called [Metadata Object Description
-        Schema](https://www.loc.gov/standards/mods/). Note that the
+        format called Metadata Object Description
+        Schema (<ref target="#mods">MODS</ref>). Note that the
         namespace prefix `md` stands for the URI
         `http://www.loc.gov/mods/v3`</p>
 
         <eg xml:space="preserve"><![CDATA[
-
         <md:titleInfo>
-        <md:title>Enten - eller</md:title>
-        <md:subTitle>Et livsfragment</md:subTitle>
+           <md:title>Enten - eller</md:title>
+           <md:subTitle>Et livsfragment</md:subTitle>
         </md:titleInfo>
 
         <md:name displayLabel="Author"
-        type="personal"
-        authorityURI="https://viaf.org/viaf/7392250/"
-        xml:lang="en">
-        <md:namePart type="family">Kierkegaard</md:namePart>
-        <md:namePart type="given">Søren</md:namePart>
-        <md:namePart type="date">1813/1855</md:namePart>
-        <md:alternativeName altType="pseudonym">
-        <md:namePart>Victor Eremita</md:namePart>
-        <md:description>“Victorious hermit,” general editor of
-        Either/Or, who also appears in the first part of its sequel,
-        Stages on Life’s Way. Also the author of the satirical article
-        “A Word of Thanks to Professor Heiberg.”</md:description>
-        </md:alternativeName>
-        <md:role>
-        <md:roleTerm type="code">aut</md:roleTerm>
-        </md:role>
+                 type="personal"
+                 authorityURI="https://viaf.org/viaf/7392250/"
+                 xml:lang="en">
+           <md:namePart type="family">Kierkegaard</md:namePart>
+           <md:namePart type="given">Søren</md:namePart>
+           <md:namePart type="date">1813/1855</md:namePart>
+           <md:alternativeName altType="pseudonym">
+              <md:namePart>Victor Eremita</md:namePart>
+
+              <md:description>“Victorious hermit,” general editor of
+              Either/Or, who also appears in the first part of its
+              sequel, Stages on Life’s Way. Also the author of the
+              satirical article “A Word of Thanks to Professor
+              Heiberg.”</md:description>
+
+           </md:alternativeName>
+           <md:role>
+              <md:roleTerm type="code">aut</md:roleTerm>
+           </md:role>
         </md:name>
         
         <md:originInfo>
-        <md:dateCreated>1843</md:dateCreated>
-        <md:publisher>Universitetsboghandler C. A. Reitzel</md:publisher>
+           <md:dateCreated>1843</md:dateCreated>
+           <md:publisher>Universitetsboghandler C. A. Reitzel</md:publisher>
         </md:originInfo>
 
         ]]></eg> 
 
-
         <p>This is a fake record I created for the purpose of this
-        paper.  The work has a `title` and `name`. The name has a
-        `role` (`aut` as in author) and parts like family
-        (Kierkegaard), given (Søren) and a date (1813/1855 which is
-        ISO's way to express a [date
-        range](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/),
-        i.e., the years between which the philosopher was alive. His
-        _Fragment of Life_.)</p>
+        paper.  The work has a <term>title</term> and a
+        <term>name</term>, which has a <term>role</term> (which is
+        <term>aut</term> as in author). The <term>name</term> also has
+        multiple parts like family name (Kierkegaard), given name
+        (Søren) and a date (1813/1855 which is ISO's way to express a
+        <ref target="#dc-terms-date">date</ref> range i.e., the years
+        between which the philosopher was alive. His <hi
+        rend='italic'>Fragment of Life</hi>.)</p>
 
         <p>To get the birth and death dates you have to parse a
         string. As a matter of fact, the name on the book cover
-        wasn't Søren Kierkegaard, but Victor Eremita (Victorious
-        hermit), encoded as an alternativeName. A telling pseudonym
-        of the author of The Seducer's Diary. [Søren was good at
-        pseudonyms](https://www.reddit.com/r/philosophy/comments/1n2opm/a_whos_who_of_kierkegaards_formidable_army_of/).</p>
+        wasn't <name>Søren Kierkegaard</name> but <name>Victor Eremita</name> (Victorious
+        hermit), encoded as an &lt;alternativeName&gt;. A telling pseudonym
+        of the author of The Seducer's Diary.
+        Søren was good at <ref target="#pseudonyms">pseudonyms</ref>.</p>
 
         <p>The <![CDATA[<md:role> ... </md:role>]]> permits the
-        cataloger to encode that a person called _Søren_ has the
-        `aut` relation to the work. Library of Congress have listed
-        [houndreds of such
-        relators](https://www.loc.gov/marc/relators/relacode.html). Actually,
-        each of those could be seen as a field. The thing is that
-        even in a large bibliographic database there would be very
-        few records where _Data manager_ (`dtm`), _Former owner_
-        (`fmo`) and _Librettist_ (`lbt`) would contain any data.</p>
+        cataloger to encode that a person called <name>Søren</name>
+        has the <hi rend='monospaced'>aut</hi> relation to the
+        work. Library of Congress have lists with houndreds of such
+        <ref target="#relators">relators</ref>. Actually, each of
+        those could be seen as a field. The thing is that even in a
+        large bibliographic database there would be very few records
+        where <term>Data manager</term> (<hi
+        rend='monospaced'>dtm</hi>), <term>Former owner</term> (<hi
+        rend='monospaced'>fmo</hi>) and <term>Librettist</term> (<hi
+        rend='monospaced'>lbt</hi>) would contain any data.</p>
 
         <p>Now we've identified a lot of possible fields to use, for
         cataloging and for information retrieval. They have perfectly
         reasonable use cases, and all of them are used in everyday
         library practice, so how do I get them into my Solr index?</p>
+        
       </div>
       <div>
         <head>The attempt</head>
@@ -243,255 +258,341 @@
 
 
         <eg xml:space="preserve"><![CDATA[
-        [
+[
+  {
+   "id": "https://example.org/record",
+   "described": true,
+   "entity_type": "the_object",
+   "cataloging_language": "en",
+   "record_created": "2022-08-12",
+   "tit": [
         {
-        "id": "https://example.org/record",
-        "described": true,
-        "entity_type": "the_object",
-        "cataloging_language": "en",
-        "record_created": "2022-08-12",
-        "tit": [
-        {
-        "describing": "https://example.org/record",
-        "described": false,
-        "entity_type": "title main",
-        "title": [
-        "Enten - eller"
-        ],
+          "describing": "https://example.org/record",
+          "described": false,
+          "entity_type": "title main",
+          "title": [
+            "Enten - eller"
+          ],
         "id": "https://example.org/record!disposable!subrecord!d1e21"
         }
-        ],
-        "aut": [
-        {
-        "id": "https://example.org/record!disposable!subrecord!d1e30",
-        "authority": "https://viaf.org/viaf/7392250/",
-        "described": false,
-        "describing": "https://example.org/record",
-        "language": "en",
-        "entity_type": "aut",
-        "agent_name": "Kierkegaard Søren (1813/1855)"
-        }
-        ],
-        "visible_date": [
-        "1843"
-        ],
-        }
-        ]
-        ]]>
-      </eg>
+   ],
+   "aut": [
+      {
+          "id": "https://example.org/record!disposable!subrecord!d1e30",
+          "authority": "https://viaf.org/viaf/7392250/",
+          "described": false,
+          "describing": "https://example.org/record",
+          "language": "en",
+          "entity_type": "aut",
+          "agent_name": "Kierkegaard Søren (1813/1855)"
+      }
+   ],
+   "visible_date": ["1843"],
+  }
+ ]
+ ]]>
+        </eg>
 
-      <p>If you are familiar with the workings of Solr, you know that the
-      data-model (if I may label it as such) used is configured in a file
-      call `schema.xml`. It basically contains list of fields that can be
-      used in what is referred to as `Solr documents`. In such a schema you
-      may add 
-    </p>
+        <p>If you are familiar with the workings of Solr, you know that the
+        data-model (if I may label it as such) used is configured in a file
+        call `schema.xml`. It basically contains list of fields that can be
+        used in what is referred to as `Solr documents`. In such a schema you
+        may add 
+        </p>
 
-    <eg xml:space="preserve"><![CDATA[
-    <field     name="_nest_path_" type="_nest_path_" stored="true" indexed="true" />
-    <field     name="_nest_parent_" type="string" indexed="true" stored="true" />
-    ]]></eg>
+        <eg xml:space="preserve"><![CDATA[
+        <field     name="_nest_path_" 
+                   type="_nest_path_" 
+                   stored="true" 
+                   indexed="true" />
 
-    <p>the former of which is of the following type:</p>
+        <field     name="_nest_parent_" 
+                   type="string" 
+                   indexed="true" 
+                   stored="true" />
+        ]]></eg>
 
-    <eg xml:space="preserve"><![CDATA[
-    <fieldType name="_nest_path_" class="solr.NestPathField" />
-    ]]></eg>
+        <p>the former of which is of the following type:</p>
 
-    <p>See the Solr [Indexing Nested Child
-    Documents](https://solr.apache.org/guide/8_1/indexing-nested-documents.html)
-    documentation.</p>
+        <eg xml:space="preserve"><![CDATA[
+        <fieldType name="_nest_path_" class="solr.NestPathField" />
+        ]]></eg>
 
-    <p>The nested indexing works since the indexer stores an xpath like
-    entity for each record, making it possible track which Solr
-    document which is parent and which document which is child which is
-    the parent. That info is in the `_nest_path_` field and Solr does
-    that automatically whenever it starts a new document inside a
-    parent one.</p>
+        <p>See the Solr <ref target="nested-documents">Indexing Nested Child
+        Documents</ref> documentation.</p>
 
-    <p>You will get that information back from the server if you add a
-Solr field list argument (fl) at search time</p>
+        <p>The nested indexing works since the indexer stores an xpath like
+        entity for each record, making it possible track which Solr
+        document which is parent and which document which is child which is
+        the parent. That info is in the <hi
+        rend='monospaced'>_nest_path_</hi> field and Solr does
+        that automatically whenever it starts a new document inside a
+        parent one.</p>
 
-<eg xml:space="preserve"><![CDATA[
-fl=*,[child]
-]]></eg>
+        <p>You will get that information back from the server if you add a
+        Solr field list argument (<hi rend='monospaced'>fl</hi>) at search
+        time</p>
 
-<p>That is straight forward. The problem is then to make Solr search
-in the child documents and return the parent or root document.</p>
+        <eg xml:space="preserve"><![CDATA[
+        fl=*,[child]
+        ]]></eg>
 
-<eg xml:space="preserve"><![CDATA[
-{!parent which="described:true"}{!edismax v="agent_name:(Kierkegaard Søren) AND entity_type:aut"}
+        <p>That is straight forward. The problem is then to make Solr
+        search in the child documents and return the parent or root
+        document.</p>
+
+        <eg xml:space="preserve"><![CDATA[
+
+{!parent which="described:true"}
+         {!edismax v="agent_name:(Kierkegaard Søren) AND entity_type:aut"}
+
 AND
-{!parent which="described:true"}{!edismax v="title:(Enten - eller) AND entity_type:tit"}
-]]></eg>
 
-<p>The constructs <![CDATA[{!parent ... }]]> and <![CDATA[{!edismax ... }]]> are so called
-local parameters in a Solr request. The former specifies that we want
-Solr to return parent documents such the described:true, the latter
-tells Solr we want the author to be Søren and title to be Enten -
-eller. Now we can reasonably easy search and retrieve information on
-the _Etcher_ (`etr`) and _Dancer_ (`dnc`), when applicable.</p>
+{!parent which="described:true"}
+         {!edismax v="title:(Enten - eller) AND entity_type:tit"}
 
-<p>This is a special case of `join` as implemented in Solr. Recall that
-joins are at very very core of `SQL`, and one of the features making
-the RDBMS such a powerful tool.</p>
+        ]]></eg>
 
-<p>Also recall that I mentioned that my first Solr instructor dissuaded
-us from using search engines as data stores. Does that generalize to
-other features coming from the database world?</p>
-</div>
-<div>
-<head>The user problems</head>
+        <p>The constructs <![CDATA[{!parent ... }]]> and
+        <![CDATA[{!edismax ... }]]> are so called local parameters in a
+        Solr request. The former specifies that we want Solr to return
+        parent documents such the described:true, the latter tells Solr we
+        want the author to be Søren and title to be Enten  &#8212; eller. Now we
+        can reasonably easy search and retrieve information on the
+        <term>Etcher</term> (<hi rend='monospaced'>etr</hi>) and
+        <term>Dancer</term> (<hi rend='monospaced'>dnc</hi>), when
+        applicable.</p>
 
-<p>I hope I've been able to convince you that the fairly complicated
-metadata structures used in libraries are useful for patrons and
-staff. They were not invented for giving software developers gray
-hair and age prematurely. Also, it is legitimate use case to be able
-to identify the etchers and dancers.</p>
+        <p>This is a special case of <hi rend='monospaced'>join</hi> as
+        implemented in Solr. Recall that joins are at very very core of
+        <hi rend='monospaced'>SQL</hi>, and one of the features making the
+        RDBMS such a powerful tool.</p>
 
-<p>However:</p>
+        <p>Also recall that I mentioned that my first Solr instructor
+        dissuaded us from using search engines as data stores. Does that
+        generalize to other features coming from the database world?</p>
+      </div>
+      <div>
+        <head>The user problems</head>
 
-<list>
-  <item>We do, however, know that users at of our resources are not very
-  good at using fields. An interface allowing you to search
-  portraiture subjects is very specialized use case. So is the use
-case to be able to search for senders and recipients of letters.</item>
+        <p>I hope I've been able to convince you that the fairly
+        complicated metadata structures used in libraries are useful for
+        patrons and staff. They were not invented for giving software
+        developers gray hair and age prematurely. Also, it is legitimate
+        use case to be able to identify the etchers and the dancers.</p>
 
-<item> People do search for word in a title, but they do not search for _A
-life fragment_ separate from _Either/or_. Likewise they not
-particularly interested in making a difference between _Enten -
-eller_ and _Either/or_. If they search for the latter they
-presumably want an English translation, but when studying a detailed
-presentation they are almost certainly interested to know that
-Either/or is actually a translation.</item>
+        <p>However:</p>
 
-<item>You know, each performance of _Весна священная_ (AKA The Rite of
-Spring) has a conductor, director and choreographer and a lot of
-dancers, obviously in addition to _Стравинский, Игорь Фёдорович_ (AKA
-Igor Stravinsky, the composer). I could go on here. You could add from your own
-experience.</item>
-</list>
+        <list>
+          <item>We do, however, know that users at of our resources are not very
+          good at using fields. An interface allowing you to search
+          portraiture subjects is very specialized use case. So is the use
+          case to be able to search for senders and recipients of letters.</item>
 
-<p>
-  To make a useful service we have to aggregate data into reasonable
-  headlines. _[Dublin Core Metadata
-  Initiative](https://www.dublincore.org/)_ has actually a name for
-  this: The [Dumb-Down
-  Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/)
-</p>
+          <item> People do search for word in a title, but they do not search
+          for <title>A life fragment</title> separate from
+          <title>Either/or</title>. Likewise they not particularly interested
+          in making a difference between <title>Enten &#8212; eller</title>
+          and <title>Either/or</title>. If they search for the latter they
+          presumably want an English translation, but when studying a detailed
+          presentation they are almost certainly interested to know that
+          Either/or is actually a translation.</item>
 
-</div>
-<div>
-<head>The developer problems</head>
+          <item>You know, each performance of <title>Весна священная</title> (AKA The Rite
+          of Spring) has a conductor, director and choreographer and a lot of
+          dancers, obviously in addition to <name>Стравинский, Игорь Фёдорович</name>
+          (AKA <name>Stravinsky, Igor Fyodorovich</name> the composer). I could go on here. You could
+          add from your own experience.</item>
+        </list>
 
-<p>From the developers point of view, metadata dumb-down can take place,
-either (i) when indexing or (ii) when searching.</p>
+        <p>
+          To make a useful service we have to aggregate data into reasonable
+          headlines. _[Dublin Core Metadata
+          Initiative](https://www.dublincore.org/)_ has actually a name for
+          this: The [Dumb-Down
+          Principle](https://www.dublincore.org/resources/glossary/dumb-down_principle/)
+        </p>
 
-<p>In either case, for a ballet performance we would dumb-down _Composer_ (`cmp`), Conductor
-(`cnd`), Director (`drt`) and Choreographer (`chr`) to one single
-repeatable field
-[creator](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/). It
-would contain Igor Stravinsky (the transcribed, but perhaps also his name
-in Cyrillic), and obviously all other creatives. Most of the dancers would
-most likely go to the
-[contributor](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/contributor/)
-field.</p>
+      </div>
+      <div>
+        <head>The developer problems</head>
 
-<p>Doing dumb-down at indexing would mean to create fields `creator` and
-`contributor` in the index, to do it when searching would imply to do
-it using the horrendous search syntax presented above. Then you have
-to do the same for title and other relevant fields.</p>
+        <p>From the developers point of view, metadata dumb-down can take place,
+        either (i) when indexing or (ii) when searching.</p>
 
-<p>In the case of Either/or, Enten - eller the dumb-down solr record
-would look somewhat as the record below:</p>
+        <p>In either case, for a ballet performance we would dumb-down
+        _Composer_ ((<hi rend='monospaced'>cmp</hi>), Conductor ((<hi
+        rend='monospaced'>cnd</hi>), Director ((<hi
+        rend='monospaced'>drt</hi>) and Choreographer ((<hi
+        rend='monospaced'>chr</hi>) to one single repeatable field
+        [creator](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/creator/). It
+        would contain Igor Stravinsky (the transcribed, but perhaps
+        also his name in Cyrillic), and obviously all other
+        creatives. Most of the dancers would most likely go to the <ref target="#contributor">contributor</ref>
+        field.</p>
 
-<eg xml:space="preserve"><![CDATA[
-[
-{
-"id": "https:!!example.org!record",
-"title": [
-"Enten - eller"
-],
-"creator": [
-"Kierkegaard, Søren 1813/1855"
-],
-"record_created": "2022-08-12",
-"visible_date": [
-"1843"
-],
-"original_object_identifier": [],
-"pages": []
-}
-]
-]]></eg>
+        <p>Doing dumb-down at indexing would mean to create fields <hi
+        rend='monospaced'>creator</hi> and
+        <hi
+        rend='monospaced'>contributor</hi> in the index, to do it when searching would imply to do
+        it using the horrendous search syntax presented above. Then you have
+        to do the same for title and other relevant fields.</p>
 
-<p>Hence when indexing we only create one record, and no joins are
-needed. A query could be</p>
+        <p>In the case of <title>Either/or</title>, <title>Enten  &#8212; eller</title> the dumb-down solr record
+        would look somewhat as the record below:</p>
 
-<eg xml:space="preserve"><![CDATA[
-creator:kierkegaard AND title:(enten eller)
-]]></eg>
+        <eg xml:space="preserve"><![CDATA[
+        [
+           {
+           "id": "https:!!example.org!record",
+           "title": [
+              "Enten  &#8212; eller"
+           ],
+           "creator": [
+              "Kierkegaard, Søren 1813/1855"
+           ],
+           "record_created": "2022-08-12",
+           "visible_date": [
+              "1843"
+           ],
+           "original_object_identifier": [],
+           "pages": []
+           }
+        ]
+        ]]></eg>
 
-<p>The drawback being that the in the index we cannot tell the
-difference between _Igor Stravinsky_ (`cmp`) and the _Conductor_
-(`cnd`). Both are creators. The dumbed-down index has lost most of
-the information you need to decide whether you want to listen to an
-album or see a performance.</p>
+        <p>Hence when indexing we only create one record, and no joins are
+        needed. A query could be</p>
 
-<list rend="numbered">
-  <item>At indexing: Your search syntax is nice and clean. You have to use
-some other method to present the data in the detailed view.</item>
-<item>At search: Your search syntax is very complicated. On the other
-hand, you have all the data needed for the detailed view.</item>
-<item>At a practical level, the nested Solr seems more or less
-experimental, and the documentation is less than excellent. Only
-the [lucene
-queryparser](https://solr.apache.org/guide/6_6/the-standard-query-parser.html)
-supports it, and when searching with (for example) edismax query
-parser you run into the syntactic problem with local parameters
-demonstrated above.</item>
-</list>
+        <eg xml:space="preserve"><![CDATA[
+        creator:kierkegaard AND title:(enten eller)
+        ]]></eg>
 
-<p>If we are to describe the situation in Model-View-Controller (MVC)
-terms, the second (i.e., the at search implementation) looks nice. One
-model, one controller but (perhaps) two views. When doing it at
-indexing, we need two models and an architecture diagram might look
-much more messy. Semantic exercise to make the dumb-down scheme might
-seem complicated. The code, however, is much simplified.</p>
+        <p>The drawback being that the in the index we cannot tell the
+        difference between <name>Igor Stravinsky</name> (<hi rend='monospaced'>cmp</hi>) and the <term>Conductor</term>
+        (<hi rend='monospaced'>cnd</hi>). Both are creators. The dumbed-down index has lost most of
+        the information you need to decide whether you want to listen to an
+        album or see a performance.</p>
 
-<p>The fact that each substructure in the nested Solr document
-must follow the same schema is an annoying feature. It isn't
-important, but persons, subjects and whatever all have the same
-content model (in the sense of an XML DTD or Schema), makes the setup
-much less attractive.</p>
+        <list rend="numbered">
 
-<p>Finally, it is my experience that it easier to accommodate multiple
-metadata models and standards in the same index with dumb-down at
-indexing. In our case we opted for transforming our MODS records to
-[schema.org](https://schema.org) for the detailed presentation. Hence,
-retrieval will be from a separate datastore. The schema.org ontology
-is rich enough for our landing pages and detailed result sets. It
-provides an extra bonus, we hope, in that Google would actually be
-able to index our collection.</p>
+          <item>At indexing: Your search syntax is nice and clean. You have to use
+          some other method to present the data in the detailed view.</item>
 
-<p>The only advantage I can see with at search time dumb-down is that we
-would have only a single model in our search application.</p>
-</div>
-<div>
-<head>Conclusion</head>
+          <item>At search: Your search syntax is very complicated. On the other
+          hand, you have all the data needed for the detailed view.</item>
 
-<p>In the end, after some weeks work, we threw out our nested indexing
-stuff and most likely we a threw out some baby we were not aware of
-with the bathwater. Be that as it may, we opted for an easy format for
-search, while retaining interoperability for other uses.</p>
+          <item>At a practical level, the nested Solr seems more or less
+          experimental, and the documentation is less than excellent. Only
+          the <ref target="lucene_query_parser">lucene query parser</ref>
+          supports it, and when searching with (for example) <hi rend='monospaced'>edismax</hi> query
+          parser you run into the syntactic problem with local parameters
+          demonstrated above.</item>
+        </list>
 
-<p>Library patrons have more needs than resource discovery. Some use APIs
-for study, research or for services of their own. The search index,
-schema.org, the original mods will eventually be available for such
-purposes. It could be that a nested index could actually be useful for
-such users.</p>
+        <p>If we are to describe the situation in Model-View-Controller (MVC)
+        terms, the second (i.e., the at search implementation) looks nice. One
+        model, one controller but (perhaps) two views. When doing it at
+        indexing, we need two models and an architecture diagram might look
+        much more messy. Semantic exercise to make the dumb-down scheme might
+        seem complicated. The code, however, is much simplified.</p>
 
-</div>
-</body>
-</text>
+        <p>The fact that each substructure in the nested Solr document
+        must follow the same schema is an annoying feature. It isn't
+        important, but persons, subjects and whatever all have the same
+        content model (in the sense of an XML DTD or Schema), makes the setup
+        much less attractive.</p>
+
+        <p>Finally, it is my experience that it easier to accommodate
+        multiple metadata models and standards in the same index with
+        dumb-down at indexing. In our case we opted for transforming
+        our MODS records to the <ref
+        target="#schema.org">schema.org</ref> ontology for the
+        detailed presentation. Hence, retrieval will be from a
+        separate datastore. The schema.org ontology is rich enough for
+        our landing pages and detailed result sets. It provides an
+        extra bonus, we hope, in that Google would actually be able to
+        index our collection.</p>
+
+        <p>The only advantage I can see with at search time dumb-down is that we
+        would have only a single model in our search application.</p>
+      </div>
+      <div>
+        <head>Conclusion</head>
+
+        <p>In the end, after some weeks work, we threw out our nested
+        indexing stuff and most likely we a threw out some baby we
+        were not aware of with the bathwater. Be that as it may, we
+        opted for an easy format for search, while retaining detail
+        for presentation, and interoperability for other uses.</p>
+
+        <p>Library patrons have more needs than resource
+        discovery. Some use APIs for study, research or for services
+        of their own. The search index, schema.org, the original mods
+        will eventually be available for such purposes. It could be
+        that a nested index could actually be useful for such
+        users.</p>
+
+      </div>
+      <div>
+        <head>References</head>
+        <listBibl>
+          <bibl xml:id="acid">
+            <title level="a">ACID</title>
+            <title level="m">Wikipedia</title>
+            <ref target="https://en.wikipedia.org/wiki/ACID"/>
+          </bibl>
+          <bibl xml:id="crud">
+            <title level="a">Create, read, update and delete</title>
+            <title level="m">Wikipedia</title>
+            <ref target="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete"/>
+          </bibl>
+          <bibl xml:id="dc-terms-date">
+            <title level="m">Date</title>
+            <ref target="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/date/"/>
+          </bibl>
+
+          <bibl xml:id="contributor">
+            <title level="m">Contributor</title>
+            <ref target="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/terms/contributor/"/>
+          </bibl>
+          
+          <bibl xml:id="mods">
+            <author>Library of Congress</author>
+            <title level="m">Metadata Object Description Schema</title>
+            <ref target="https://www.loc.gov/standards/mods/"/>
+          </bibl>
+          <bibl xml:id="relators">
+            <author>Library of Congress</author>
+            <title level="m">MARC Code List for Relators</title>
+            <ref target="https://www.loc.gov/marc/relators/relacode.html"/>
+          </bibl>
+          
+          <bibl xml:id="pseudonyms">
+            <author>ConclusivePostscript</author>
+            <date>2013</date>
+            <title level="a">A “Who’s Who” of Kierkegaard’s Formidable Army of Pseudonyms</title>
+            <ref target="https://www.reddit.com/r/philosophy/comments/1n2opm/a_whos_who_of_kierkegaards_formidable_army_of/"/>
+          </bibl>
+
+          <bibl xml:id="lucene_query_parser">
+            <title level="a">The Standard Query Parser</title>
+            <title level="m">Apache Solr Reference Guide</title>
+            <ref target="https://solr.apache.org/guide/6_6/the-standard-query-parser.html"/>
+          </bibl>
+
+          <bibl xml:id="nested-documents">
+            <title level="a">Indexing Nested Child Documents</title>
+            <title level="m">Apache Solr Reference Guide</title>
+            <ref target="https://solr.apache.org/guide/8_1/indexing-nested-documents.html"/>
+          </bibl>
+
+          <bibl xml:id="schema.org">
+            <title level="m">schema.org</title>
+            <ref target="https://schema.org"/>
+          </bibl>
+        </listBibl>
+      </div>
+    </body>
+  </text>
 </TEI>

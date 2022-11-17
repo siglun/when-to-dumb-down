@@ -188,9 +188,16 @@ Notes
 </xsl:text></xsl:template>
 
 <xsl:template match="t:graphic"><xsl:text>
-.PDFPIC </xsl:text><xsl:value-of select="concat(substring-before(substring-after(@url,'main/'),'.'),'.pdf')"/><xsl:text> 12.0c 7.2c</xsl:text> <!-- xsl:value-of select="substring-before(@width,'m')"/ --><xsl:text>
+.PDFPIC </xsl:text><xsl:value-of select="concat(substring-before(substring-after(@url,'main/'),'.'),'.pdf')"/><xsl:text> 12.0c</xsl:text> <!-- xsl:value-of select="substring-before(@width,'m')"/ --><xsl:text>
 </xsl:text></xsl:template>
-  
+
+<xsl:template match="t:name">
+\fI<xsl:apply-templates  mode="preserve"/>\fP
+</xsl:template>
+
+<xsl:template match="t:term">
+\fI<xsl:apply-templates  mode="preserve"/>\fP
+</xsl:template>
 
 <xsl:template match="t:emph[@rend='bold']">
 \fB<xsl:apply-templates  mode="preserve"/>\fP
@@ -204,6 +211,7 @@ Notes
 <xsl:template match="t:hi[@rend='bold']">
 \fB<xsl:apply-templates  mode="preserve"/>\fP
 </xsl:template>
+
 <xsl:template match="t:hi[@rend='monospaced']">
 \f(CR<xsl:apply-templates  mode="preserve"/>\fP
 </xsl:template>
