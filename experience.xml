@@ -325,7 +325,7 @@
         <p>See the Solr <ref target="nested-documents">Indexing Nested Child
         Documents</ref> documentation.</p>
 
-        <p>The nested indexing works since the indexer stores an xpath like
+        <p>The nested indexing works since the indexer stores an <term>XPath</term> like
         entity for each record, making it possible track which Solr
         document which is parent and which document which is child which is
         the parent. That info is in the <hi

@@ -165,7 +165,7 @@ the former of which is of the following type:
 ```
 See the Solr Indexing Nested Child Documents documentation.
 
-The nested indexing works since the indexer stores an xpath like entity for each record, making it possible track which Solr document which is parent and which document which is child which is the parent. That info is in the _nest_path_ field and Solr does that automatically whenever it starts a new document inside a parent one.
+The nested indexing works since the indexer stores an XPath like entity for each record, making it possible track which Solr document which is parent and which document which is child which is the parent. That info is in the _nest_path_ field and Solr does that automatically whenever it starts a new document inside a parent one.
 
 You will get that information back from the server if you add a Solr field list argument (fl) at search time
 ```

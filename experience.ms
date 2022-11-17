@@ -230,7 +230,9 @@ See the Solr
 .pdfhref W -D https://github.com/siglun/danish-sonnets/blob/main/nested-documents Indexing Nested Child Documents
 documentation.
 .LP
-The nested indexing works since the indexer stores an xpath like entity for each record, making it possible track which Solr document which is parent and which document which is child which is the parent. That info is in the
+The nested indexing works since the indexer stores an
+\fIXPath\fP
+like entity for each record, making it possible track which Solr document which is parent and which document which is child which is the parent. That info is in the
 \f(CR_nest_path_\fP
 field and Solr does that automatically whenever it starts a new document inside a parent one.
 .LP
