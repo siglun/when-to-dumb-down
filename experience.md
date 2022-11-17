@@ -95,7 +95,7 @@ Assume we are about to add metadata on Enten — eller by Søren Kierkegaard int
 ```
 This is a fake record I created for the purpose of this paper. The work has a title and a name, which has a role (which is aut as in author). The name also has multiple parts like family name (Kierkegaard), given name (Søren) and a date (1813/1855 which is ISO's way to express a date range i.e., the years between which the philosopher was alive. His Fragment of Life.)
 
-To get the birth and death dates you have to parse a string. As a matter of fact, the name on the book cover wasn't Søren Kierkegaard but Victor Eremita (Victorious hermit), encoded as an <alternativeName>. A telling pseudonym of the author of The Seducer's Diary. Søren was good at pseudonyms.
+To get the birth and death dates you have to parse a string. As a matter of fact, the name on the book cover wasn't Søren Kierkegaard but Victor Eremita (Victorious hermit), encoded as an (<alternativeName> ... </alternativeName>). A telling pseudonym of the author of The Seducer's Diary. Søren was good at pseudonyms.
 
 The <md:role> ... </md:role> permits the cataloger to encode that a person called Søren has the aut relation to the work. Library of Congress have lists with houndreds of such relators. Actually, each of those could be seen as a field. The thing is that even in a large bibliographic database there would be very few records where Data manager (dtm), Former owner (fmo) and Librettist (lbt) would contain any data.
 

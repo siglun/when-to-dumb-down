@@ -222,13 +222,15 @@
         rend='italic'>Fragment of Life</hi>.)</p>
 
         <p>To get the birth and death dates you have to parse a
-        string. As a matter of fact, the name on the book cover
-        wasn't <name>Søren Kierkegaard</name> but <name>Victor Eremita</name> (Victorious
-        hermit), encoded as an &lt;alternativeName&gt;. A telling pseudonym
-        of the author of The Seducer's Diary.
-        Søren was good at <ref target="#pseudonyms">pseudonyms</ref>.</p>
+        string. As a matter of fact, the name on the book cover wasn't
+        <name>Søren Kierkegaard</name> but <name>Victor Eremita</name>
+        (Victorious hermit), encoded as an (<hi
+        rend='monospaced'>&lt;alternativeName&gt; ... &lt;/alternativeName&gt;</hi>). A
+        telling pseudonym of the author of The Seducer's Diary.  Søren
+        was good at <ref target="#pseudonyms">pseudonyms</ref>.</p>
 
-        <p>The <![CDATA[<md:role> ... </md:role>]]> permits the
+        <p>The <hi
+        rend='monospaced'>&lt;md:role> ... &lt;/md:role></hi> permits the
         cataloger to encode that a person called <name>Søren</name>
         has the <hi rend='monospaced'>aut</hi> relation to the
         work. Library of Congress have lists with houndreds of such

@@ -132,11 +132,15 @@ To get the birth and death dates you have to parse a string. As a matter of fact
 \fISøren Kierkegaard\fP
 but
 \fIVictor Eremita\fP
-(Victorious hermit), encoded as an <alternativeName>. A telling pseudonym of the author of The Seducer's Diary. Søren was good at
+(Victorious hermit), encoded as an (
+\f(CR<alternativeName> ... </alternativeName>\fP
+). A telling pseudonym of the author of The Seducer's Diary. Søren was good at
 .pdfhref L -D pseudonyms pseudonyms
 \&.
 .LP
-The <md:role> ... </md:role> permits the cataloger to encode that a person called
+The
+\f(CR<md:role> ... </md:role>\fP
+permits the cataloger to encode that a person called
 \fISøren\fP
 has the
 \f(CRaut\fP
