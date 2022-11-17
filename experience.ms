@@ -31,8 +31,11 @@ At the first Solr workshop I participated the teacher reiterated over and over a
 .SH
 The role of bibliographic structure
 .LP
-In a library we encounter data with much more structure than simple packages of attributes and values, but also much less structure than what you expect from data in [database normal form](https://en.wikipedia.org/wiki/Database_normalization). Bibliographical data may
-\fBfor instance\fP
+In a library we encounter data with much more structure than simple packages of attributes and values, but also much less structure than what you expect from data in
+.pdfhref L -D normal-form database normal form
+\&. Bibliographical data may
+\fBfor
+        instance\fP
 describe texts that
 .IP \s+1\(bu\s-1
 have one or more titles, each having different type (main title, subtitle, translated title, transcribed title, uniform title to iterate some of the frequently used ones)
@@ -402,6 +405,13 @@ Create, read, update and delete.  In:
 .br  
 \s-2\f(CR
 .pdfhref W -D https://en.wikipedia.org/wiki/Create,_read,_update_and_delete https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+\fP\s+2
+.XP
+.pdfhref M -N normal-form
+Database normalization. 
+.br  
+\s-2\f(CR
+.pdfhref W -D https://en.wikipedia.org/wiki/Database_normalization https://en.wikipedia.org/wiki/Database_normalization
 \fP\s+2
 .XP
 .pdfhref M -N dc-terms-date
